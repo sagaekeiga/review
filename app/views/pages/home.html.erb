@@ -1,0 +1,41 @@
+<div class="ui grid" style="padding: 10px;">
+  <div class="four wide column">
+      
+    <div class="ui raised segments">
+      <div class="ui segment">ランキング</div>
+        <% @ranks.each do |product| %>
+        <div class="ui segment">
+            <%= image_tag(product.url, :size => '50x50', :class => "ui middle aligned tiny image") if !product.url.nil? %>
+            <span>
+            <%= link_to "#{product.name}", product %>
+            </span>
+        </div>
+        <% end %>
+    </div>
+  </div>
+  
+  <div class="eight wide column">
+    <% @products.each do |product| %>
+    <div class="ui raised segment">
+        <div style="padding-bottom: .5em;border-bottom: 1px solid #ccc;">
+            <%= link_to "#{product.name}", product %>
+        </div><br>
+        <%= image_tag(product.url, :size => '50x50', :class => "ui middle aligned tiny image") if !product.url.nil? %>
+        <span>
+        <%= product.description %>
+        </span>
+    </div>
+    <% end %>
+  </div>
+  
+  <div class="four wide column">
+    <div class="ui raised segments">
+        <div class="ui segment">ランキング</div>
+        <div class="ui segment">
+            <% @categories.each do |category| %>
+                <span class="ui orange label" style="padding: 5px;"><%= category.name %></span>
+            <% end %>
+        </div>
+    </div>
+  </div>
+</div>

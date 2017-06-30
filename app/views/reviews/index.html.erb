@@ -1,0 +1,26 @@
+<table class="ui celled table">
+  <thead>
+    <tr><th>ID</th>
+    <th>twitter_id</th>
+    <th>日にち</th>
+    <th>商品名</th>
+    <th>画像</th>
+    <th>テキスト</th>
+    <th>管理</th>
+  </tr></thead>
+  <tbody>
+    <% @reviews.each do |review| %>
+        <tr>
+         <td ><%= review.id %></td>
+         <td><%= review.tweet_id %></td>
+         <td><%= review.date %></td>
+         <td><%= review.product %></td>
+         <td><%= image_tag(review.url, :size => '50x50') if !review.url.nil? %></td>
+         <td><%= review.text if !review.text.nil? %></td>
+         <td>
+          <%= link_to "削除", review, { :class => "ui red button", method: :delete, data: { confirm: "本当に削除してもいいですか？" }} %>
+         </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>

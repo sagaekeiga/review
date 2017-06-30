@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Workspace</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+<%= render 'layouts/header' if controller.action_name == 'home' || controller.action_name == 'show' %>
+<%= render 'shares/manage_header' if controller.action_name == 'index' || controller.controller_name == 'reviews' || controller.controller_name == 'categories'%>
+<div class="contents">
 <%= yield %>
-
+</div>
+  <% if controller.action_name == 'home' || controller.action_name == 'show' %>
+    <div class="footer">
+      <div class="footer_contents">
+        <p class="footer_content_line">COPYRIGHT &#169; レビュッター ALL RIGHTS RESERVED.	</p>
+      </div>
+    </div>
+  <% end %>
 </body>
 </html>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98599290-1', 'auto');
+  ga('send', 'pageview');
+
+</script>

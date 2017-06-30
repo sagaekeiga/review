@@ -1,0 +1,25 @@
+<%= render 'categories/new' %>
+<table class="ui celled table">
+  <thead>
+    <tr><th>ID</th>
+    <th>カテゴリ名</th>
+    <th>管理</th>
+  </tr></thead>
+  <tbody>
+    <% @categories.each do |category| %>
+        <tr>
+         <td class="collapsing"><%= category.id %></td>
+         <td class="collapsing"><%= category.name %></td>
+         <td>
+          <%= render 'categories/edit', category: category %>
+          <%= link_to "削除", category, { :class => "ui red button", method: :delete, data: { confirm: "本当に削除してもいいですか？" }} %>
+         </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<script>
+$('.ui.accordion').accordion();
+</script>

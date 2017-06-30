@@ -1,0 +1,16 @@
+<div class="ui accordion">
+    <div class="title">
+      <i class="dropdown icon"></i>
+      編集
+    </div>
+    <div class="word-break content">
+      <%= form_for(category, url: category_path(category), html: {method: 'patch', class: 'ui form'}) do |f| %>
+            <div class="field">
+                <%= f.text_field :name, class: "" %>
+            </div>
+            <div class="field">
+                <%= f.submit "変更", class: 'ui blue basic button'%>
+            </div>
+      <% end %><br>
+    </div>
+</div><br>

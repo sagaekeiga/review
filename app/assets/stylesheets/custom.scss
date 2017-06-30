@@ -1,0 +1,32 @@
+@import "semantic-ui";
+
+body {
+  background-color: #f2f2f2;
+}
+
+
+.footer {
+ width: 100%;
+ height: 100px;
+ margin-top: 100px;
+ background-color: white;
+}
+
+
+.footer_contents {
+ width: 50%;
+ height: 100px;
+ text-align: center;
+ margin: auto;
+}
+
+.contents {
+ width: 100%;
+ min-height: 1200px;
+ height: auto !important;
+ height: 50px;
+}
+
+.footer_content_line {
+    line-height: 100px;
+}

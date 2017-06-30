@@ -1,0 +1,31 @@
+<%= render 'products/new' %>
+<table class="ui celled table">
+  <thead>
+    <tr><th>ID</th>
+    <th>商品名</th>
+    <th>カテゴリ</th>
+    <th>説明</th>
+    <th>スイッチ</th>
+    <th>管理</th>
+  </tr></thead>
+  <tbody>
+    <% @products.each do |product| %>
+        <tr>
+         <td class="collapsing"><%= product.id %></td>
+         <td class="collapsing"><%= link_to"#{product.name}", product, { :target => "_blank"}  %></td>
+         <td class="collapsing"><%= product.category %></td>
+         <td class="collapsing"><%= product.description.truncate(20) if !product.description.nil? %></td>
+         <td class="collapsing"><%= product.switch %></td>
+         <td>
+          <%= render 'products/edit', product: product %>
+          <%= link_to "削除", product, { :class => "ui red button", method: :delete, data: { confirm: "本当に削除してもいいですか？" }} %>
+         </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<script>
+$('.ui.accordion').accordion();
+</script>
