@@ -1,4 +1,4 @@
-<title>レビュッター | <%= @product.name %>のレビュー </title>
+<title><%= @product.name %></title>
 <div class="ui grid" style="padding: 10px;">
   <%= render 'shares/rank' %>
 
@@ -32,7 +32,7 @@
         <% @reviews.each do |tweet| %>
         <div class="ui raised segment">
            <%= image_tag(tweet.url, :class => "ui image", :style => "margin-bottom: 10px;") if !tweet.url.nil? %>
-           <%= image_tag(tweet.image, :class => "ui image", :style => "border-radius: 50%;") if !tweet.nil? %>
+           <%= image_tag(tweet.image, :class => "ui image", :style => "border-radius: 50%;") if !tweet.image.nil? %>
            <span style="color: purple;"><%= "" + tweet.name %></span><br>
            <span style="color: gray;"><%=  time_ago_in_words(tweet.date)+"前" %></span><br>
            <%= tweet.text %><br>

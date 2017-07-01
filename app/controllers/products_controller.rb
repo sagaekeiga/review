@@ -43,13 +43,14 @@ require 'uri'
     def show
       @q        = Product.search(params[:q])
       @product = Product.find(params[:id])
+      @slice_product = Product.find(params[:id])
       @product.rank = @product.rank + 1
       @product.save!
       @reviews = Review.where(product: "#{@product.name}").order("date").reverse
       @ranks = Product.all.order("rank").first(10)
       @comment = Comment.new
       @comments = Comment.where(product_id: @product.id).order("created_at").reverse
-      @relatives = Product.where("name like '%#{@product.name.slice!(0..3)}%'").order("rank").reverse.first(10)
+      @relatives = Product.where("name like '%#{@slice_product.name.slice!(0..3)}%'").order("rank").reverse.first(10)
     end
     
     def update
