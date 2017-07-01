@@ -5,7 +5,7 @@
 set :output, '/home/anime/review/current/log/crontab.log'
 set :environment, :production
 
-every 1.minute do
+every 5.minute do
   rake 'sample:sample RAILS_ENV=production'
 end
 # Example:
