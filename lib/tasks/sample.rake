@@ -23,6 +23,7 @@ namespace :sample do
                       @review.product = product.name
                       @review.name = "@" + tweet[:user][:screen_name]
                       @review.text = tweet[:text]
+                      @review.link = tweet[:url]
                       @review.image = tweet[:user][:profile_image_url]
                       URI.extract(@review.text).uniq.each{|url|
                           @review.text.gsub!(url,"")
@@ -40,6 +41,7 @@ namespace :sample do
                       @review.product = product.name
                       @review.name = "@" + tweet[:user][:screen_name]
                       @review.text = tweet[:text]
+                      @review.link = tweet[:url]
                       @review.image = tweet[:user][:profile_image_url]
                       @review.save!
                   rescue => e
