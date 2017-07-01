@@ -2,10 +2,10 @@
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
-set :output, '/home/anime/review/current/crintab.log'
+set :output, '/home/anime/review/current/log/crintab.log'
 set :environment, :production
 
-every 5.minute do
+every 1.minute do
   rake 'terror:sample RAILS_ENV=production'
 end
 # Example:
