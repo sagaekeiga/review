@@ -7,8 +7,9 @@
 </head>
 <body>
 
+<%= render 'layouts/header' if controller.controller_name == 'products' && controller.action_name == 'index' %>
 <%= render 'layouts/header' if controller.action_name == 'home' || controller.action_name == 'show' %>
-<%= render 'shares/manage_header' if controller.action_name == 'index' || controller.controller_name == 'reviews' || controller.controller_name == 'categories'%>
+<%= render 'shares/manage_header' if controller.controller_name == 'reviews' || controller.controller_name == 'categories' || controller.action_name == 'manage'%>
 <div class="contents">
 <%= yield %>
 </div>

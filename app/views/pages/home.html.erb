@@ -1,18 +1,6 @@
 <div class="ui grid" style="padding: 10px;">
-  <div class="four wide column">
-      
-    <div class="ui raised segments">
-      <div class="ui segment">ランキング</div>
-        <% @ranks.each do |product| %>
-        <div class="ui segment">
-            <%= image_tag(product.url, :size => '50x50', :class => "ui middle aligned tiny image") if !product.url.nil? %>
-            <span>
-            <%= link_to "#{product.name}", product %>
-            </span>
-        </div>
-        <% end %>
-    </div>
-  </div>
+  
+  <%= render 'shares/rank' %>
   
   <div class="eight wide column">
     <% @products.each do |product| %>
@@ -22,7 +10,7 @@
         </div><br>
         <%= image_tag(product.url, :size => '50x50', :class => "ui middle aligned tiny image") if !product.url.nil? %>
         <span>
-        <%= product.description %>
+        <%= product.description.truncate(40) %>
         </span>
     </div>
     <% end %>
@@ -30,7 +18,7 @@
   
   <div class="four wide column">
     <div class="ui raised segments">
-        <div class="ui segment">ランキング</div>
+        <div class="ui segment">カテゴリ</div>
         <div class="ui segment">
             <% @categories.each do |category| %>
                 <span class="ui orange label" style="padding: 5px;"><%= category.name %></span>

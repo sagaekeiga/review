@@ -1,0 +1,40 @@
+
+
+<div class="ui raised segments">
+        <div class="ui segment">コメント欄</div>
+        <div class="ui segment">
+
+        <%= form_for(@comment, url: comments_path(@comment), html: {method: 'post', class: 'ui form'}) do |f| %>
+        <div class="ui raised segment">
+            
+            <div class="field">
+              <label>名前</label>
+              <%= f.text_field :name, class: "", placeholder: "名前" %>
+            </div>
+            
+
+            <div class="field">
+              <%= f.text_field :content, placeholder: "コメントを入力してください。" %>
+            </div>
+            
+          <%= f.hidden_field :product_id, :value => "#{@product.id}" %>
+            
+            
+          <div class="actions">
+            <%= f.submit "投稿", class: 'ui button'%>
+          </div>
+          
+        </div>
+        <% end %>
+
+  </div>
+  
+    <% @comments.each do |comment| %>
+    <div class="ui raised segment">
+        <span style="color: gray;"><%=  time_ago_in_words(comment.created_at)+"前" %></span><br>
+        <span style="color: green;"><%= comment.name %></span><br>
+        <span>
+        <b><%= comment.content %></b>
+        </span>
+    </div>
+    <% end %>

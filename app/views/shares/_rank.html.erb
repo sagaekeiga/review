@@ -1,0 +1,36 @@
+  <div class="four wide column">
+      
+    <div class="ui raised segments">
+      <div class="ui segment">人気の記事</div>
+        <% @ranks.each do |product| %>
+        <div class="ui segment">
+            <%= image_tag(product.url, :size => '50x50', :class => "ui middle aligned tiny image") if !product.url.nil? %>
+            <span>
+            <%= link_to "#{product.name}", product %>
+            </span>
+        </div>
+        <% end %>
+    </div>
+    
+    <% if controller.action_name == 'home' %>
+        <div class="ui raised segments">
+          <div class="ui segment">最新のコメント</div>
+            <% @comments.each do |comment| %>
+            <div class="ui segment">
+                <%= link_to "#{comment.content}", "/products/#{comment.product_id}" %>
+            </div>
+            <% end %>
+        </div>
+    <% end %>
+    
+    <% if controller.action_name == 'show' %>
+        <div class="ui raised segments">
+          <div class="ui segment">関連記事</div>
+            <% @relatives.each do |product| %>
+            <div class="ui segment">
+                <%= link_to "#{product.name}", product %>
+            </div>
+            <% end %>
+        </div>
+    <% end %>
+  </div>

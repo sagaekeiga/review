@@ -3,6 +3,15 @@ require 'uri'
 
     
     def index
+        @q        = Product.search(params[:q])
+        @products = Product.all
+        @ranks = Product.all.order("rank").reverse.first(10)
+        @categories = Category.all.order("created_at").first(20)
+        @comments = Comment.all.order("created_at").reverse.first(20)
+        @results = @q.result(distinct: true).order("created_at").first(20)
+    end
+    
+    def manage
         @products = Product.all
         @product = Product.new
     end
@@ -11,10 +20,10 @@ require 'uri'
     def create
      @product = Product.new(product_params)
      if @product.save
-       redirect_to products_path
+       redirect_to :back
      else
         @products = Product.all
-       render 'products/index'
+       render 'products/manage'
      end
     end
     
@@ -36,7 +45,11 @@ require 'uri'
       @product = Product.find(params[:id])
       @product.rank = @product.rank + 1
       @product.save!
-      @reviews = Review.where(product: "#{@product.name}")
+      @reviews = Review.where(product: "#{@product.name}").order("date").reverse
+      @ranks = Product.all.order("rank").first(10)
+      @comment = Comment.new
+      @comments = Comment.where(product_id: @product.id).order("created_at").reverse
+      @relatives = Product.where("name like '%#{@product.name.slice!(0..3)}%'").order("rank").reverse.first(10)
     end
     
     def update
@@ -71,6 +84,8 @@ require 'uri'
                       @review.product = product.name
                       @review.name = "@" + tweet[:user][:screen_name]
                       @review.text = tweet[:text]
+                      @review.link = tweet[:url]
+                      @review.image = tweet[:user][:profile_image_url]
                       URI.extract(@review.text).uniq.each{|url|
                           @review.text.gsub!(url,"")
                       }
@@ -87,6 +102,8 @@ require 'uri'
                       @review.product = product.name
                       @review.name = "@" + tweet[:user][:screen_name]
                       @review.text = tweet[:text]
+                      @review.link = tweet[:url]
+                      @review.image = tweet[:user][:profile_image_url]
                       @review.save!
                   rescue => e
                         p "エラー"

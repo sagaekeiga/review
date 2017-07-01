@@ -1,31 +1,29 @@
-<%= render 'products/new' %>
-<table class="ui celled table">
-  <thead>
-    <tr><th>ID</th>
-    <th>商品名</th>
-    <th>カテゴリ</th>
-    <th>説明</th>
-    <th>スイッチ</th>
-    <th>管理</th>
-  </tr></thead>
-  <tbody>
-    <% @products.each do |product| %>
-        <tr>
-         <td class="collapsing"><%= product.id %></td>
-         <td class="collapsing"><%= link_to"#{product.name}", product, { :target => "_blank"}  %></td>
-         <td class="collapsing"><%= product.category %></td>
-         <td class="collapsing"><%= product.description.truncate(20) if !product.description.nil? %></td>
-         <td class="collapsing"><%= product.switch %></td>
-         <td>
-          <%= render 'products/edit', product: product %>
-          <%= link_to "削除", product, { :class => "ui red button", method: :delete, data: { confirm: "本当に削除してもいいですか？" }} %>
-         </td>
-        </tr>
+<div class="ui grid" style="padding: 10px;">
+  
+  <%= render 'shares/rank' %>
+  
+  <div class="eight wide column">
+    <% @results.each do |product| %>
+    <div class="ui raised segment">
+        <div style="padding-bottom: .5em;border-bottom: 1px solid #ccc;">
+            <%= link_to "#{product.name}", product %>
+        </div><br>
+        <%= image_tag(product.url, :size => '50x50', :class => "ui middle aligned tiny image") if !product.url.nil? %>
+        <span>
+        <%= product.description.truncate(40) %>
+        </span>
+    </div>
     <% end %>
-  </tbody>
-</table>
-
-
-<script>
-$('.ui.accordion').accordion();
-</script>
+  </div>
+  
+  <div class="four wide column">
+    <div class="ui raised segments">
+        <div class="ui segment">カテゴリ</div>
+        <div class="ui segment">
+            <% @categories.each do |category| %>
+                <span class="ui orange label" style="padding: 5px;"><%= category.name %></span>
+            <% end %>
+        </div>
+    </div>
+  </div>
+</div>

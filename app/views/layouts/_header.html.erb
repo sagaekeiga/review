@@ -2,5 +2,11 @@
   <h3 class="ui center aligned header">
     <%= link_to "レビュッター", root_path %>
     <div class="sub header">レビュッターはサービスに関するレビューサイトです。</div>
+    <div class="sub header">ツイッターで関連する投稿が表示されます。</div><br>
+    <%= search_form_for @q do |f| %>
+    <div class="ui fluid  input">
+      <%= f.search_field :name_cont %>
+    </div>
+    <% end %>
   </h3>
 </div>

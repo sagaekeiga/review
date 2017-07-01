@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170630115750) do
+ActiveRecord::Schema.define(version: 20170701035856) do
 
   create_table "categories", force: :cascade do |t|
     t.text     "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "name"
+    t.text     "content"
+    t.text     "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -37,6 +45,8 @@ ActiveRecord::Schema.define(version: 20170630115750) do
     t.text     "name"
     t.text     "text"
     t.text     "url"
+    t.text     "image"
+    t.text     "link"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end

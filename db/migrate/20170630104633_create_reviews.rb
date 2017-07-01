@@ -7,6 +7,8 @@ class CreateReviews < ActiveRecord::Migration
       t.text :name
       t.text :text
       t.text :url
+      t.text :image
+      t.text :link
 
 
       t.timestamps null: false
