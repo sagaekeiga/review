@@ -22,7 +22,7 @@
             
             <div class="field">
               <label>カテゴリ</label>
-              <%= f.select :category,  options_for_select(["飲食店", "無所属", "その他"]), {}, { class: 'ui fluid dropdown' } %>
+              <%= f.collection_select :category, Category.all, :name, :name %>
             </div>
 
             <div class="field">
